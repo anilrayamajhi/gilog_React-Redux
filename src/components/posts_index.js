@@ -67,7 +67,7 @@ class PostIndex extends Component {
             <input className="mdl-textfield__input" type="text" id="sample3" value={this.state.filterTerm} onChange={this.onInputChange.bind(this)}/>
             <label className="mdl-textfield__label">Search for Blog...</label>
         </form>
-        <div className="text-xs-right">
+        <div className="text-xs-right floating-action">
           <Link to="posts/new">
             <button className="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
               <i className="material-icons">add</i>

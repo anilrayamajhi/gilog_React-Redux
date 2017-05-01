@@ -10,3 +10,17 @@
 .h1-styles, .div-styles, .div1-styles {
   margin: 37px 0;
 }
+
+@media (max-width: 960px) {
+.floating-action {
+  position: fixed;
+  margin: auto 25% auto 75%;
+}}
+
+@media (max-width: 600px) {
+  .floating-action {
+    position: fixed;
+    bottom: 0;
+    margin: 90% 25% 10% 75%;
+  }
+}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 import { fetchBlog, deleteBlog } from '../actions/index';
 
@@ -9,6 +10,12 @@ var puke = (obj) => {
 
 
 class BlogPage extends Component {
+  constructor(props) {
+      super(props);
+      this.props.posts.post = {}
+    }
+
+
   static get contextTypes() {
     return {
       router: React.PropTypes.object.isRequired,
@@ -16,7 +23,7 @@ class BlogPage extends Component {
   }
 
   componentWillMount(){
-    this.props.fetchBlog(this.props.params.id);
+      this.props.fetchBlog(this.props.params.id);
   }
 
   deleteBlogFunc(){
@@ -62,19 +69,10 @@ class BlogPage extends Component {
     var delBlog = () => {
       // console.log(this.props);
       this.props.deleteBlog(this.props.params.id);
-      this.context.router.push('/');
+      setTimeout(() => {
+        this.context.router.push('/');
+      }, 700);
     }
-  }
-
-
-  renderData(data){
-    return(
-      <div>
-        <h1 className="h1-styles">{data.title}</h1>
-      <div className="text-xs-right div-styles"><strong>{data.categories}</strong></div>
-    <div className="div1-styles">{data.content}</div>
-      </div>
-    )
   }
 
   render(){
@@ -88,6 +86,13 @@ class BlogPage extends Component {
 
     return(
       <div>
+        <div className="text-xs-right">
+          <Link to="/">
+            <button type="submit" className="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" >
+              <i className="md-36 material-icons">home</i>
+            </button>
+          </Link>
+        </div>
         {/* {puke(POST)} */}
         <button type="submit" className="mdl-button mdl-js-button mdl-button--icon mdl-button--accent mdl-js-ripple-effect">
       </button>
@@ -101,6 +106,16 @@ class BlogPage extends Component {
         </div>
       </div>
     )
+  }
+
+  renderData(data){
+      return(
+        <div>
+          <h1 className="h1-styles">{data.title}</h1>
+          <div className="text-xs-right div-styles"><strong>{data.categories}</strong></div>
+          <div className="div1-styles">{data.content}</div>
+        </div>
+      )
   }
 }
 

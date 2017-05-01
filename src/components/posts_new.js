@@ -6,6 +6,12 @@ import { createPost } from '../actions/index';
 import { Link } from 'react-router';
 
 class PostsNew extends Component {
+  static get contextTypes() {
+    return {
+      router: React.PropTypes.object.isRequired,
+    };
+  }
+
   submitMessage(){
     swal({
       title: "Posting Blog",
@@ -17,33 +23,22 @@ class PostsNew extends Component {
       closeOnConfirm: false,
       confirmButtonColor: "rgb(255,64,129)"
     },function(){
-        setTimeout(function(){
           swal(
             {
             title: "Blog Archived!",
-            confirmButtonColor: "rgb(255,64,129)"
-            }
-          );
-        }, 2000);
-      },function() {
-      // Redirect the user
-      window.location.href = "/";
-    })
-  }
+            confirmButtonColor: "rgb(255,64,129)",
+            timer: 1700
+            });
+        redirectRoute();
+      });
 
-//   swal({
-//   title: "Ajax request example",
-//   text: "Submit to run ajax request",
-//   type: "info",
-//   showCancelButton: true,
-//   closeOnConfirm: false,
-//   showLoaderOnConfirm: true,
-// },
-// function(){
-//   setTimeout(function(){
-//     swal("Ajax request finished!");
-//   }, 2000);
-// });
+      var redirectRoute = () => {
+        setTimeout(() => {
+          this.context.router.push("/");
+        }, 2500)
+
+      }
+  }
 
   render() {
     // console.log('New posts', this.props);
@@ -77,14 +72,12 @@ class PostsNew extends Component {
             <textarea type="text" className="form-control" {...content} />
             </div>
             <div className="text-xs-right">
-              <Link to="/">
-                <button type="submit" className="mdl-button mdl-js-button mdl-button--primary h5">Home</button>
-              </Link>
-              <button type="submit" className="mdl-button mdl-js-button mdl-button--primary h5" onClick={this.submitMessage}>Submit</button>
+            <button type="submit" className="mdl-button mdl-js-button mdl-button--primary h5" onClick={this.submitMessage.bind(this)}>Submit</button>
             </div>
         </form>
       </div>
     );
+
   }
 }
 
