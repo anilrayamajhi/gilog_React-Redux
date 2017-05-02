@@ -89,7 +89,7 @@ class BlogPage extends Component {
         <div className="text-xs-right">
           <Link to="/">
             <button type="submit" className="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" >
-              <i className="md-36 material-icons">home</i>
+              <i className="material-icons">home</i>
             </button>
           </Link>
         </div>
@@ -98,11 +98,9 @@ class BlogPage extends Component {
       </button>
         {this.renderData(POST)}
         <div className="text-xs-right">
-            <button className="mdl-button mdl-js-button mdl-button--icon mdl-button--accent mdl-js-ripple-effect">
               <a href="#" onClick={this.deleteBlogFunc.bind(this)}>
-                <i className="material-icons">delete_forever</i>
+                <i className="md-37 material-icons">delete_forever</i>
               </a>
-            </button>
         </div>
       </div>
     )
