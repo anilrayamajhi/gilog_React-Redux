@@ -6,12 +6,17 @@ var
   mongoose = require('mongoose'),
   bodyParser = require('body-parser'),
   path = require('path'),
-  PORT = process.env.port || 3000
+  webpack = require('webpack'),
+  webpackMiddleware = require('webpack-dev-middleware'),
+  config = require('./webpack.config.js'),
+  PORT = process.env.port || 3000;
+
+var compiler = webpack(config);
 
   var
     mongoose = require('mongoose'),
     blogSchema = new mongoose.Schema({
-      title: String,
+      title: {type: String, trim: true},
       categories: String,
       content: String
     }, {timestamps: true})
@@ -26,14 +31,17 @@ mongoose.connect('mongodb://localhost/GILOG', function(err) {
 
 app.use(logger('dev'))
 app.use(bodyParser.json())
-app.use(express.static('/index.html'))
+app.use(express.static(path.join(__dirname,'/index.html')))
+app.use('/swal', express.static(__dirname + '/node_modules/sweetalert/dist/'));
+app.use(webpackMiddleware(compiler));
+
 
 app.use('/api', router);
 
 router.route('/posts')
   .get(
     function index(req, res) {
-      Blog.find({}, function(err, blogs) {
+      Blog.find().sort([['updatedAt', 'descending']]).exec(function(err, blogs) {
         if(err) return console.log(err)
         res.json(blogs)
       })
@@ -54,7 +62,7 @@ router.route('/posts/:id')
       Blog.findById(req.params.id, function(err, blog) {
           if(err) {
           console.log('ERROR: ', err);
-          res.sendFile('/client/index.html', {root: './'})
+          res.sendFile('/index.html', {root: './'})
         }
       res.json(blog)
     })

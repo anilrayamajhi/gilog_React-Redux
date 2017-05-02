@@ -7,6 +7,8 @@ import ReduxPromise from 'redux-promise';
 
 import reducers from './reducers';
 import routes from './config/routes';
+require('../style/style.css');
+
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 

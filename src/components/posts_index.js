@@ -38,8 +38,8 @@ class PostIndex extends Component {
   renderData(blog) {
     if(!!blog){
       return(
-        <tr key={blog.id} >
-          <td><Link to={`posts/${blog.id}`}>{blog.title}</Link></td>
+        <tr key={blog._id} >
+          <td><Link to={`posts/${blog._id}`}>{(blog.title.length >= 17)? `${blog.title.slice(0, 17)}...`: blog.title}</Link></td>
           <td>{blog.categories}</td>
         </tr>
       )
