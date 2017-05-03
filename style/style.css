@@ -8,7 +8,7 @@
 }
 
 .h1-styles, .div-styles, .div1-styles {
-  margin: 7px 0;
+  margin: 17px 0;
 }
 
 @media (max-width: 960px) {
@@ -27,5 +27,5 @@
 
 .md-37 {
   font-size: 37px;
-  margin: 27px 0;
+  margin: 37px 17px 0 0;
 }
