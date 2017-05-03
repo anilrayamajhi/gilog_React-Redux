@@ -34,6 +34,7 @@
     "axios": "^0.16.0",
     "babel-preset-stage-1": "^6.1.18",
     "body-parser": "^1.17.1",
+    "dotenv": "^4.0.0",
     "express": "^4.15.2",
     "express-react-views": "^0.10.2",
     "lodash": "^3.10.1",

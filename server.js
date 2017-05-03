@@ -1,4 +1,5 @@
 var
+  dotenv = require('dotenv').load({silent: true}),
   express = require('express'),
   app = express(),
   router = express.Router();
@@ -23,7 +24,7 @@ var compiler = webpack(config);
 
   var Blog = mongoose.model('Blog', blogSchema)
 
-mongoose.connect('mongodb://localhost/GILOG', function(err) {
+mongoose.connect(process.env.MONGO_URL, function(err) {
   console.log(err || "Connected to MongoDB (GILOG)")
 })
 
