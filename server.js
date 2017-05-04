@@ -12,6 +12,8 @@ var
   config = require('./webpack.config.js'),
   PORT = process.env.port || 3000;
 
+var  seeds = require('./seeds.js')
+
 var compiler = webpack(config);
 
   var
@@ -77,6 +79,18 @@ router.route('/posts/:id')
       })
     }
   )
+
+
+  router.get('/seed',
+    function seed(req, res) {
+      Blog.remove({}, function(err) {
+        if(err) return console.log(err)
+        Blog.insertMany(seeds, function(err, blogs) {
+          if(err) return console.log(err)
+          res.json({success: true, message: "Blogs created!", blogs: blogs})
+        })
+      })
+  })
 
 
 app.get('*', function(req, res) {

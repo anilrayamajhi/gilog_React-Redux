@@ -11,7 +11,13 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js',
   },
-
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'API_HOST': 'https://gilog.herokuapp.com/'
+      }
+    })
+  ],
   module: {
     loaders: [
       {
