@@ -4,20 +4,13 @@ var webpack = require('webpack');
 
 module.exports = {
   entry: {
-    dashboard: './src/index.js',
+    dashboard: ['babel-polyfill', __dirname + './src/index.js'],
   },
   output: {
     path: __dirname,
     publicPath: '/',
     filename: 'bundle.js',
   },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        'API_HOST': 'https://gilog.herokuapp.com/'
-      }
-    })
-  ],
   module: {
     loaders: [
       {
