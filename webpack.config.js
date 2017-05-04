@@ -4,7 +4,7 @@ var webpack = require('webpack');
 
 module.exports = {
   entry: {
-    dashboard: ['babel-polyfill', __dirname + './src/index.js'],
+    dashboard: ['babel-polyfill', './src/index.js'],
   },
   output: {
     path: __dirname,
