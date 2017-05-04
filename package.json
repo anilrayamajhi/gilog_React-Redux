@@ -5,8 +5,7 @@
   "main": "server.js",
   "repository": "",
   "scripts": {
-    "start": "cross-env NODE_ENV=production MONGO_URL=mongodb://gilog:gilog@ds129641.mlab.com:29641/gilog node src/index.js",
-
+    "start": "node server.js",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm run test -- --watch"
   },
