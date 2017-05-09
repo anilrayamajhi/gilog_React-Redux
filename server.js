@@ -10,7 +10,7 @@ var
   webpack = require('webpack'),
   webpackMiddleware = require('webpack-dev-middleware'),
   config = require('./webpack.config.js'),
-  PORT = process.env.PORT || 3000;
+  PORT = process.env.port || 3000;
 
 var  seeds = require('./seeds.js')
 
