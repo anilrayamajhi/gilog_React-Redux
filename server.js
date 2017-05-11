@@ -1,3 +1,5 @@
+console.log("GILOG IS DEPLOYING IN HEROKU...");
+
 var
   dotenv = require('dotenv').load({silent: true}),
   express = require('express'),
