@@ -10,13 +10,13 @@ var
   bodyParser = require('body-parser'),
   path = require('path'),
   webpack = require('webpack'),
-  webpackMiddleware = require('webpack-dev-middleware'),
-  config = require('./webpack.config.js'),
+  // webpackMiddleware = require('webpack-dev-middleware'),
+  // config = require('./webpack.config.js'),
   port = process.env.PORT || 3000;
 
 var  seeds = require('./seeds.js')
 
-var compiler = webpack(config);
+// var compiler = webpack(config);
 
   var
     mongoose = require('mongoose'),
@@ -38,7 +38,7 @@ app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname,'/index.html')))
 app.use('/swal', express.static(__dirname + '/node_modules/sweetalert/dist/'));
-app.use(webpackMiddleware(compiler));
+// app.use(webpackMiddleware(compiler));
 
 
 app.use('/api', router);
