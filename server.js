@@ -12,7 +12,7 @@ var
   webpack = require('webpack'),
   webpackMiddleware = require('webpack-dev-middleware'),
   config = require('./webpack.config.js'),
-  PORT = process.env.port || 3000;
+  port = process.env.PORT || 3000;
 
 var  seeds = require('./seeds.js')
 
@@ -99,6 +99,6 @@ app.get('*', function(req, res) {
   res.sendFile('/index.html', {root: './'})
 })
 
-app.listen(PORT, function(err) {
-  console.log(err || "Server running on port " + PORT)
+app.listen(port, function(err) {
+  console.log(err || "Server running on port " + port)
 })

@@ -1,11 +1,7 @@
-var path = require('path');
-var webpack = require('webpack');
-
-
 module.exports = {
-  entry: {
-    dashboard: ['babel-polyfill', './src/index.js'],
-  },
+  entry: [
+    './src/index.js'
+  ],
   output: {
     path: __dirname,
     publicPath: '/',
@@ -16,7 +12,7 @@ module.exports = {
       {
         test: /\.js|.jsx?$/,
         exclude: /(node_modules)/,
-        loader: 'babel-loader',
+        loader: 'babel',
         query: {
           presets: ['react', 'es2015', 'stage-1']
         }
