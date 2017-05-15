@@ -57,7 +57,7 @@ class PostsNew extends Component {
           <h3>Create A New Post</h3>
             <div className="form-group">
               <label>Title</label>
-            <input type="text" className="form-control" {...title} />
+            <input type="text" className="form-control" {...title} required/>
           {/* {...title}: using this syntax destructure the title object. Thus, we can access properties(viz. onChange) of title object simply by title.onChange  instead of typing this.props.title.onChange */}
               <div className="text-help">
                 {title.touched ? title.error : ''}
@@ -65,11 +65,11 @@ class PostsNew extends Component {
             </div>
             <div className="form-group">
               <label>Category</label>
-            <input type="text" className="form-control" {...categories} />
+            <input type="text" className="form-control" {...categories} required/>
             </div>
             <div className="form-group">
               <label>Content</label>
-            <textarea type="text" className="form-control" {...content} />
+            <textarea type="text" className="form-control" {...content} required/>
             </div>
             <div className="text-xs-right">
             <button type="submit" className="mdl-button mdl-js-button mdl-button--primary h5" onClick={this.submitMessage.bind(this)}>Submit</button>
