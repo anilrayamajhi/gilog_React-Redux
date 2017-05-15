@@ -57,7 +57,7 @@ class PostsNew extends Component {
           <h3>Create A New Post</h3>
             <div className="form-group">
               <label>Title</label>
-            <input type="text" className="form-control" {...title} required/>
+            <input type="text" className="form-control" {...title}/>
           {/* {...title}: using this syntax destructure the title object. Thus, we can access properties(viz. onChange) of title object simply by title.onChange  instead of typing this.props.title.onChange */}
               <div className="text-help">
                 {title.touched ? title.error : ''}
