@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { browserHistory } from 'react-router';
 export const FETCH_POSTS = 'FETCH_POSTS';
 export const FETCH_BLOG = 'FETCH_BLOG';
 export const CREATE_POST = 'CREATE_POST';
@@ -30,7 +30,9 @@ export const fetchBlog = (BlogId) => {
 
 
 export const createPost = (props) => {
-  const request = axios.post(`${ROOT_URL}/posts/`, props)
+  console.log("Find Context",props);
+  const request = axios.post(`${ROOT_URL}/posts/`, props);
+  submitMessage();
   return {
     type: CREATE_POST,
     payload: request
@@ -44,4 +46,32 @@ export const deleteBlog = (BlogId) => {
     type: DELETE_POST,
     payload: request
   }
+}
+
+
+const submitMessage = () => {
+  swal({
+    title: "Posting Blog",
+    text: "Click on OK to view post!",
+    // type: "success",
+    // confirmButtonText: 'OK',
+    type: "info",
+    showLoaderOnConfirm: true,
+    closeOnConfirm: false,
+    confirmButtonColor: "rgb(255,64,129)"
+  },function(){
+        swal(
+          {
+          title: "Blog Archived!",
+          confirmButtonColor: "rgb(255,64,129)",
+          timer: 1700
+          });
+      redirectRoute();
+    });
+
+    var redirectRoute = () => {
+      setTimeout(() => {
+        browserHistory.push('/')
+      }, 1400);
+    }
 }

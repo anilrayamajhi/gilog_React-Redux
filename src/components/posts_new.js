@@ -6,42 +6,41 @@ import { createPost } from '../actions/index';
 import { Link } from 'react-router';
 
 class PostsNew extends Component {
-  static get contextTypes() {
-    return {
-      router: React.PropTypes.object.isRequired,
-    };
-  }
+  // static get contextTypes() {
+  //   return {
+  //     router: React.PropTypes.object.isRequired,
+  //   };
+  // }
 
-  submitMessage(){
-    swal({
-      title: "Posting Blog",
-      text: "Click on OK to view post!",
-      // type: "success",
-      // confirmButtonText: 'OK',
-      type: "info",
-      showLoaderOnConfirm: true,
-      closeOnConfirm: false,
-      confirmButtonColor: "rgb(255,64,129)"
-    },function(){
-          swal(
-            {
-            title: "Blog Archived!",
-            confirmButtonColor: "rgb(255,64,129)",
-            timer: 1700
-            });
-        redirectRoute();
-      });
-
-      var redirectRoute = () => {
-        setTimeout(() => {
-          this.context.router.push("/");
-        }, 2500)
-
-      }
-  }
+  // submitMessage(){
+  //   swal({
+  //     title: "Posting Blog",
+  //     text: "Click on OK to view post!",
+  //     // type: "success",
+  //     // confirmButtonText: 'OK',
+  //     type: "info",
+  //     showLoaderOnConfirm: true,
+  //     closeOnConfirm: false,
+  //     confirmButtonColor: "rgb(255,64,129)"
+  //   },function(){
+  //         swal(
+  //           {
+  //           title: "Blog Archived!",
+  //           confirmButtonColor: "rgb(255,64,129)",
+  //           timer: 1700
+  //           });
+  //       redirectRoute();
+  //     });
+  //
+  //     var redirectRoute = () => {
+  //       setTimeout(() => {
+  //         this.context.router.push("/");
+  //       }, 2500)
+  //
+  //     }
+  // }
 
   render() {
-    // console.log('New posts', this.props);
     const { fields: { title, categories, content }, handleSubmit } = this.props;
 
     return (
@@ -55,24 +54,26 @@ class PostsNew extends Component {
         </div>
         <form onSubmit={handleSubmit(this.props.createPost)}>
           <h3>Create A New Post</h3>
+          <div className="">
+            {title.touched ? title.error : ''}
+            {categories.touched ? categories.error : ''}
+            {content.touched ? content.error : ''}
+          </div>
             <div className="form-group">
               <label>Title</label>
             <input type="text" className="form-control" {...title}/>
           {/* {...title}: using this syntax destructure the title object. Thus, we can access properties(viz. onChange) of title object simply by title.onChange  instead of typing this.props.title.onChange */}
-              <div className="text-help">
-                {title.touched ? title.error : ''}
-              </div>
             </div>
             <div className="form-group">
               <label>Category</label>
-            <input type="text" className="form-control" {...categories} required/>
+            <input type="text" className="form-control" {...categories} />
             </div>
             <div className="form-group">
               <label>Content</label>
-            <textarea type="text" className="form-control" {...content} required/>
+            <textarea type="text" className="form-control" {...content} />
             </div>
             <div className="text-xs-right">
-            <button type="submit" className="mdl-button mdl-js-button mdl-button--primary h5" onClick={this.submitMessage.bind(this)}>Submit</button>
+            <button type="submit" className="mdl-button mdl-js-button mdl-button--primary h5">Submit</button>
             </div>
         </form>
       </div>
@@ -85,9 +86,13 @@ class PostsNew extends Component {
 const validate = (values) => {
   const errors = {};
 
-  if(!values.title) {
-    errors.title = 'Enter a username';
-  }
+    if(!values.title) {
+      errors.title = 'Missing Title!!';
+    }else if(!values.categories){
+      errors.categories = 'Missing Category!!';
+    }else if(!values.content){
+      errors.content = 'Discription is Required!!';
+    }
 
   return errors;
 }
