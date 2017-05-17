@@ -1,4 +1,4 @@
-console.log("GILOG ON FIRE...");
+console.log("GILOG ON FIRE....");
 
 var
   dotenv = require('dotenv').load({silent: true}),
