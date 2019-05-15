@@ -4,6 +4,7 @@ var
   dotenv = require('dotenv').load({silent: true}),
   express = require('express'),
   app = express(),
+  cors = require('cors')
   router = express.Router();
   logger = require('morgan'),
   mongoose = require('mongoose'),
@@ -36,6 +37,7 @@ mongoose.connect(process.env.MONGO_URL, function(err) {
 
 app.use(logger('dev'))
 app.use(bodyParser.json())
+app.use(cors())
 app.use(express.static(path.join(__dirname,'/index.html')))
 app.use('/swal', express.static(__dirname + '/node_modules/sweetalert/dist/'));
 app.use(webpackMiddleware(compiler));
