@@ -13,7 +13,7 @@ var
   webpack = require('webpack'),
   webpackMiddleware = require('webpack-dev-middleware'),
   config = require('./webpack.config.js'),
-  port = process.env.PORT || 3000;
+  port = process.env.PORT || 7000;
 
 var  seeds = require('./seeds.js')
 
@@ -37,7 +37,7 @@ mongoose.connect(process.env.MONGO_URL, function(err) {
 
 app.use(logger('dev'))
 app.use(bodyParser.json())
-// app.use(cors())
+app.use(cors())
 app.use(express.static(path.join(__dirname,'/index.html')))
 app.use('/swal', express.static(__dirname + '/node_modules/sweetalert/dist/'));
 app.use(webpackMiddleware(compiler));
